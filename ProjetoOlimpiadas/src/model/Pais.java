@@ -6,6 +6,7 @@ public class Pais {
 	private long populacao;
 	private double area;
 	
+	
 	public Pais(){
 		
 	}

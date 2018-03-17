@@ -17,7 +17,7 @@ static {
 	// obtém conexão com o banco de dados
 	public static Connection obtemConexao() throws SQLException {
 		return DriverManager
-			.getConnection("jdbc:mysql://localhost/pais?user=root&password=alunos");
+			.getConnection("jdbc:mysql://localhost/olimpiadas?user=alunos&password=alunos");
 }
 
 }

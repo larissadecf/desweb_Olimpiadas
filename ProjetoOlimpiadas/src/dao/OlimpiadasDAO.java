@@ -9,11 +9,12 @@ import model.Olimpiadas;
 
 public class OlimpiadasDAO {
 	public void criar(Olimpiadas olimpiadas) {
-		String sqlInsert = "INSERT INTO pais(ano, tipo) VALUES (?, ?, )";
+		String sqlInsert = "INSERT INTO pais(ano, tipo,id_pais,id_modalidades) VALUES (?,?,?,?)";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
 			stm.setInt(1, olimpiadas.getAno());
 			stm.setString(2, olimpiadas.getTipo());
+			
 			stm.execute();
 			String sqlQuery = "SELECT LAST_INSERT_ID()";
 			try (PreparedStatement stm2 = conn.prepareStatement(sqlQuery); ResultSet rs = stm2.executeQuery();) {
@@ -29,7 +30,7 @@ public class OlimpiadasDAO {
 	}
 
 	public void atualiza(Olimpiadas olimpiadas) {
-		String sqlUpdate = "UPDATE pais SET nome=?, populacao=?, area=? WHERE id=?";
+		String sqlUpdate = "UPDATE olimpiadas SET ano=?, tipo=?, id_pais=?, id_modalidades=? WHERE id=?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setInt(1, olimpiadas.getAno());

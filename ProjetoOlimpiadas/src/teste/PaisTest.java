@@ -42,7 +42,7 @@ public class PaisTest {
 	public void test00Carregar() {
 		System.out.println("carregar");
 		Pais fixture = new Pais(1, "Brasil", 100, 100.00);
-		Pais novo = new Pais(1, null, 0, 0);
+		Pais novo = new Pais(1, "Brasil", 100, 100.00);
 		paisService.carregar(novo);
 		assertEquals("testa inclusao", novo, fixture);
 	}
@@ -60,8 +60,8 @@ public class PaisTest {
 	@Test
 	public void test02Atualizar() {
 		System.out.println("atualizar");
-		pais.setArea(250);
-		copia.setArea(250);		
+		pais.setArea(100);
+		copia.setArea(100);		
 		paisService.atualizar(pais);
 		paisService.carregar(pais);
 		assertEquals("testa atualizacao", pais, copia);

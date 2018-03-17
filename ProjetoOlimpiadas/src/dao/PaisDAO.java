@@ -30,7 +30,7 @@ public class PaisDAO {
 	}
 
 	public void atualiza(Pais pais) {
-		String sqlUpdate = "UPDATE pais SET nome=?, populacao=?, area=? WHERE id=?";
+		String sqlUpdate = "UPDATE pais SET nome=?, populacao=?, area=? WHERE id_pais=?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setString(1, pais.getNome());
@@ -44,9 +44,10 @@ public class PaisDAO {
 	}
 
 	public void excluir(Pais pais) {
-		String sqlDelete = "DELETE FROM pais WHERE id = ?";
+		String sqlDelete = "DELETE FROM pais WHERE id_pais = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
+		try (Connection conn = ConnectionFactory.obtemConexao(); 
+				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
 			stm.setInt(1, pais.getId());
 			stm.execute();
 		} catch (Exception e) {
@@ -55,7 +56,7 @@ public class PaisDAO {
 	}
 
 	public void carregar(Pais pais) {
-		String sqlSelect = "SELECT nome, populacao, area, id FROM pais WHERE pais.id = ?";
+		String sqlSelect = "SELECT nome, populacao, area, id_pais FROM pais WHERE id_pais = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, pais.getId());
